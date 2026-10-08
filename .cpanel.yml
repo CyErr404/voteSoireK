@@ -1,0 +1,6 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/dufo4213/EcommerceSoie/public/public_html/mapi/votesoirek/
+    - /bin/cp -R admin assets includes $DEPLOYPATH
+    - /bin/cp index.php submit_vote.php $DEPLOYPATH
