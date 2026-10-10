@@ -2,7 +2,8 @@
 require_once __DIR__ . '/includes/db.php';
 
 $voteOuvert = voteEstOuvert();
-$dejaVote = isset($_COOKIE['a_vote']);
+require_once __DIR__ . '/includes/vote_utils.php';
+$dejaVote = aDejaVote();
 
 $prestations = [];
 if ($voteOuvert && !$dejaVote) {

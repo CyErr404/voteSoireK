@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . '/includes/db.php';
+require_once __DIR__ . '/includes/vote_utils.php';
 
 header('Content-Type: application/json; charset=utf-8');
 
@@ -17,7 +18,7 @@ if (!voteEstOuvert()) {
     repondre(false, 'Le vote est clos.');
 }
 
-if (isset($_COOKIE['a_vote'])) {
+if (aDejaVote()) {
     repondre(false, 'Vous avez déjà voté depuis cet appareil.');
 }
 
