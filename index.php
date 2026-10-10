@@ -2,90 +2,38 @@
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
+
 require_once __DIR__ . '/includes/db.php';
 
 $voteOuvert = voteEstOuvert();
 $dejaVote = isset($_COOKIE['a_vote']);
-
-$prestations = [];
-if ($voteOuvert && !$dejaVote) {
-    $stmt = getPDO()->query('SELECT id, nom FROM prestations ORDER BY ordre ASC, nom ASC');
-    $prestations = $stmt->fetchAll();
-}
 ?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Soirée K - Vote</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/style.css">
 </head>
-<body>
+<body class="page-accueil">
+
 <main class="accueil">
   <img src="assets/img/logo-soiree-k.png" alt="Soirée K" class="logo-neon">
-  <p class="theme"> Spécial Années 2016-2026</p>
-  <p class="intro">A toi de choisir tes meilleurs prestations...</p>
+  <p class="theme">Spécial Années 2016-2026</p>
+  <p class="intro">À toi de choisir tes meilleures prestations...</p>
   <img src="assets/img/telephone.png" alt="" class="telephone">
-  <a href="vote.php" class="btn-vote"><i class="fa-solid fa-heart"></i> Je vote maintenant</a>
-</main>
-<main class="page">
-  <h1>Votez pour vos 3 prestations préférées</h1>
 
   <?php if (!$voteOuvert): ?>
-    <div class="carte message">
-      <p>Le vote est actuellement <strong>clos</strong>.</p>
-      <p>Merci à toutes et à tous pour votre participation !</p>
-    </div>
-
+    <p class="etat"><i class="fa-solid fa-lock"></i> Le vote n'est pas ouvert pour le moment.</p>
   <?php elseif ($dejaVote): ?>
-    <div class="carte message succes">
-      <p>Votre vote a bien été enregistré.</p>
-      <p>Merci d'avoir participé !</p>
-    </div>
-
-  <?php elseif (count($prestations) < 3): ?>
-    <div class="carte message">
-      <p>Le vote n'est pas encore prêt (il faut au moins 3 prestations enregistrées).</p>
-    </div>
-
+    <p class="etat"><i class="fa-solid fa-circle-check"></i> Ton vote est déjà enregistré. Merci !</p>
   <?php else: ?>
-    <div class="carte">
-      <p class="consigne">Choisissez votre 1er, 2e et 3e choix parmi les prestations ci-dessous. Chaque choix doit être différent.</p>
-
-      <form id="form-vote">
-        <label for="choix1">1er choix</label>
-        <select id="choix1" required>
-          <option value="">Sélectionnez...</option>
-          <?php foreach ($prestations as $p): ?>
-            <option value="<?= (int)$p['id'] ?>"><?= htmlspecialchars($p['nom']) ?></option>
-          <?php endforeach; ?>
-        </select>
-
-        <label for="choix2">2e choix</label>
-        <select id="choix2" required>
-          <option value="">Sélectionnez...</option>
-          <?php foreach ($prestations as $p): ?>
-            <option value="<?= (int)$p['id'] ?>"><?= htmlspecialchars($p['nom']) ?></option>
-          <?php endforeach; ?>
-        </select>
-
-        <label for="choix3">3e choix</label>
-        <select id="choix3" required>
-          <option value="">Sélectionnez...</option>
-          <?php foreach ($prestations as $p): ?>
-            <option value="<?= (int)$p['id'] ?>"><?= htmlspecialchars($p['nom']) ?></option>
-          <?php endforeach; ?>
-        </select>
-
-        <p id="erreur" class="erreur" hidden></p>
-
-        <button type="submit">Je valider mon vote</button>
-      </form>
-    </div>
+    <a href="vote.php" class="btn-vote"><i class="fa-solid fa-heart"></i> Je vote maintenant</a>
   <?php endif; ?>
 </main>
 
-<script src="assets/script.js"></script>
 </body>
 </html>
