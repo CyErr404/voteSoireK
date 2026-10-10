@@ -73,7 +73,7 @@ if ($voteOuvert && !$dejaVote) {
 
         <p id="erreur" class="erreur" hidden></p>
 
-        <button type="submit">Valider mon vote</button>
+        <button type="submit">Je valider mon vote</button>
       </form>
     </div>
   <?php endif; ?>
