@@ -32,9 +32,11 @@ if (!$voteOuvert) {
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Résultats</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../assets/style.css">
 </head>
-<body>
+<body class="admin">
 <?php include __DIR__ . '/../includes/nav_admin.php'; ?>
 <main class="page-admin">
   <h1>Résultats</h1>
@@ -63,6 +65,7 @@ if (!$voteOuvert) {
         </tbody>
       </table>
       <div class="ligne-actions">
+        <a href="revelation.php" class="bouton"><i class="fa-solid fa-trophy"></i> Lancer la révélation</a>
         <a href="export_csv.php" class="bouton-secondaire" style="text-decoration:none;display:inline-block;">Exporter en CSV</a>
       </div>
     </div>
