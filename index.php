@@ -16,12 +16,19 @@ if ($voteOuvert && !$dejaVote) {
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Votez pour vos prestations préférées</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
+<main class="accueil">
+  <img src="assets/img/logo-soiree-k.png" alt="Soirée K" class="logo-neon">
+  <p class="theme"> Spécial Années 2016-2026</p>
+  <p class="intro">A toi de choisir tes meilleurs prestations...</p>
+  <img src="assets/img/telephone.png" alt="" class="telephone">
+  <a href="vote.php" class="btn-vote"><i class="fa-solid fa-heart"></i> Je vote maintenant</a>
+</main>
 <main class="page">
   <h1>Votez pour vos 3 prestations préférées</h1>
 
